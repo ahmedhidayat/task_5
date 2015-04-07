@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "article") do |sheet|
+  sheet.add_row ["id", "title", "content", "status"] ## Header values of Excel
+  sheet.add_row [@article.id, @article.title, @article.content, @article.status]
+  
+  sheet.add_row ["id user", "content", "status"]
+  for comment in @article.comments
+  sheet.add_row [comment.user_id, comment.content, comment.status] 
+	end
+end	

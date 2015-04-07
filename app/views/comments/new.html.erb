@@ -1,0 +1,16 @@
+<%= render 'navigation'%>
+<%= form_for @comment do |f| %>
+<%= f.label :content %>
+<%= f.text_area :content, cols: 20, rows: 10 %>
+<%= @acomment.errors[:content].first unless @comment.errors[:content].blank? %>
+<br/>
+<%= f.label :status %>
+<%= f.radio_button :status, "active", :checked => true %>
+<%= label :article_status, 'active' %>
+<%= f.radio_button :status, "off", :checked => true %>
+<%= label :article_status, 'off' %>
+<br/>
+<%= f.submit :submit %>
+<% end %>
+
+

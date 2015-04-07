@@ -1,0 +1,44 @@
+<%= render 'navigation'%>
+<h3><%= @article.title %></h3>
+<p><%= @article.content %></p>
+====================================================
+</br>
+</br>
+<h4>COMMENT</h4>
+<% for comment in @article.comments%>
+<%= comment.user_id %> <%= comment.content %> <%= comment.status %></br>
+<%end%> 
+====================================================
+</br>
+</br>
+</br>
+</br>
+
+===================================================
+<p>
+  Download:
+  <%= link_to "Excel", article_path(format: "xlsx") %>
+</p>
+<p><%= link_to 'back to index', articles_path %></p>
+===================================================
+
+<h4>TAMBAH COMMENT</h4>	
+	
+<%= form_for([@article, @article.comments.build]) do |f| %>
+<%= f.hidden_field :article_id %>
+<%= f.label :user_id %>
+<%= f.text_field :user_id %>
+</br>
+<%= f.label :content %>
+<%= f.text_area :content, cols: 20, rows: 2 %>
+</br>
+<%= f.label :status %>
+<%= f.radio_button :status, "active", :checked => true %>
+<%= label :comment_status, 'active' %>
+<%= f.radio_button :status, "off", :checked => true %>
+<%= label :comment_status, 'off' %>
+<br/>
+<%= f.submit :submit %>
+<%end%>
+
+

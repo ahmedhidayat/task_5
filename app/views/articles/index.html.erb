@@ -1,0 +1,26 @@
+<%= render 'navigation'%>
+ <% @article.each do |article| %>
+
+<h3><%= article.title %></h3>
+
+<p><%= article.content %></p>
+<%= link_to 'read more', article_path(article.id) %>
+<h4>status : <%= article.status %></h4>
+
+<p>
+
+<span><%= link_to 'edit', edit_article_path(article.id) %><span>
+
+<span><%= link_to 'delete', article_path(article.id), method: "DELETE", data: {confirm: 'Delete this data ? '} %><span>
+</p>
+
+<hr/>
+
+<% end %>
+<h2>Import Article</h2>
+<%= form_tag import_articles_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+<%= paginate @article %>
+<%= page_entries_info @article %>
